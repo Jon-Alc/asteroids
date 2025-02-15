@@ -2,12 +2,16 @@ import pygame
 from constants import *
 
 def main():
-    
+
     print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
     pygame.init()
+
+    clock = pygame.time.Clock();
+    dt = 0; # deltaTime
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     while True:
@@ -18,6 +22,8 @@ def main():
             
         screen.fill((0, 0, 0))
         pygame.display.flip()
+
+        dt = clock.tick(60) / 1000 # delay game loop for 1/60th of a second, and also calculate time since last frame
 
 if __name__ == "__main__":
     main()
