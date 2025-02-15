@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+from player import Player
 
 def main():
 
@@ -9,10 +10,13 @@ def main():
 
     pygame.init()
 
+    # initialization
     clock = pygame.time.Clock();
     dt = 0; # deltaTime
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while True:
 
@@ -20,10 +24,13 @@ def main():
             if event.type == pygame.QUIT:
                 return
             
-        screen.fill((0, 0, 0))
-        pygame.display.flip()
-
+        screen.fill("black")
+        
+        player.draw(screen)
+        
+        pygame.display.flip() # updates display
         dt = clock.tick(60) / 1000 # delay game loop for 1/60th of a second, and also calculate time since last frame
+
 
 if __name__ == "__main__":
     main()
