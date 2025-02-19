@@ -31,6 +31,7 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     asteroidField = AsteroidField()
 
+    # update loop
     while True:
 
         for event in pygame.event.get():
@@ -46,6 +47,12 @@ def main():
             obj.update(dt)
         
         pygame.display.flip() # updates display
+
+        for asteroid in asteroids:
+            if asteroid.is_colliding(player):
+                print("Game over!")
+                exit(0)
+
         dt = clock.tick(60) / 1000 # delay game loop for 1/60th of a second, and also calculate time since last frame
 
 
