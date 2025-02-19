@@ -27,6 +27,7 @@ def main():
         screen.fill("black")
         
         player.draw(screen)
+        player.update(dt)
         
         pygame.display.flip() # updates display
         dt = clock.tick(60) / 1000 # delay game loop for 1/60th of a second, and also calculate time since last frame
