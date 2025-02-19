@@ -16,6 +16,11 @@ def main():
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # create groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while True:
@@ -25,9 +30,12 @@ def main():
                 return
             
         screen.fill("black")
+    
+        for obj in drawable:
+            obj.draw(screen)
         
-        player.draw(screen)
-        player.update(dt)
+        for obj in updatable:
+            obj.update(dt)
         
         pygame.display.flip() # updates display
         dt = clock.tick(60) / 1000 # delay game loop for 1/60th of a second, and also calculate time since last frame
