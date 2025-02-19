@@ -55,6 +55,12 @@ def main():
             if asteroid.is_colliding(player):
                 print("Game over!")
                 exit(0)
+            
+            for shot in shots:
+                if shot.is_colliding(asteroid):
+                    pygame.sprite.Sprite.kill(shot)
+                    pygame.sprite.Sprite.kill(asteroid)
+                    break
 
         dt = clock.tick(60) / 1000 # delay game loop for 1/60th of a second, and also calculate time since last frame
 
